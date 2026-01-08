@@ -51,10 +51,12 @@ public class Enemy : MonoBehaviour
         if (!m_playerTransform)
             return;
 
+        Vector3 localScale = transform.localScale;
+        localScale.x = Mathf.Abs(localScale.x);
         if (m_playerTransform.position.x < transform.position.x)
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-localScale.x, localScale.y, localScale.z);
         else if (m_playerTransform.position.x > transform.position.x)
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(localScale.x, localScale.y, localScale.z);
     }
 
     protected virtual void Die()
