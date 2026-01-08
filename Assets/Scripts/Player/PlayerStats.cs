@@ -6,13 +6,12 @@ public class PlayerStats : MonoBehaviour
     public static PlayerStats Instance { get; private set; }
 
     [Header("Base Stats")]
-    [SerializeField] private float baseDamage = 10f;
-    [SerializeField] private float baseHealth = 100f;
-    [SerializeField] private float baseMoveSpeed = 5f;
+    [SerializeField] private PlayableCharacterSO characterData;
 
     public float CurrentDamage { get; private set; }
     public float CurrentHealth { get; private set; }
     public float CurrentMoveSpeed { get; private set; }
+    public float CurrentLuck { get; private set; }
 
     public void AddDamage(float amount) => CurrentDamage += amount;
     public void MultiplyDamage(float factor) => CurrentDamage *= factor;
@@ -33,8 +32,9 @@ public class PlayerStats : MonoBehaviour
 
     public void ResetStats()
     {
-        CurrentDamage = baseDamage;
-        CurrentHealth = baseHealth;
-        CurrentMoveSpeed = baseMoveSpeed;
+        CurrentDamage = characterData.baseDamage;
+        CurrentHealth = characterData.baseHealth;
+        CurrentMoveSpeed = characterData.baseMoveSpeed;
+        CurrentLuck = characterData.baseLuck;
     }
 }

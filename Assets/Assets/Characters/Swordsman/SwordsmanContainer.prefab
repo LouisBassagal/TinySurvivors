@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3540992106181167792}
   m_Layer: 0
   m_Name: SwordsmanContainer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,9 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8cdb9182a4f854ead8599f5c2e4736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
   m_inputActions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  animationManager: {fileID: 0}
+  animationManager: {fileID: 2503439659293632852}
 --- !u!114 &2503439659293632852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,9 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf919b8322a0d348a0b24b0c66e644e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 10
-  baseHealth: 100
-  baseMoveSpeed: 5
+  characterData: {fileID: 11400000, guid: dda37d1b89098b44e8559b54b25a0874, type: 2}
 --- !u!1 &8345741215579190255
 GameObject:
   m_ObjectHideFlags: 0

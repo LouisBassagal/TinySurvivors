@@ -2,11 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Controller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [Header("Player Settings")]
-    public float moveSpeed = 10f;
-
     [Header("Input Actions")]
     [SerializeField]
     private InputActionAsset m_inputActions;
@@ -48,7 +45,7 @@ public class Controller : MonoBehaviour
             return;
 
         Vector2 movement = m_moveAction.ReadValue<Vector2>();
-        m_player.transform.Translate(moveSpeed * Time.deltaTime * (Vector3)movement);
+        m_player.transform.Translate(PlayerStats.Instance.CurrentMoveSpeed * Time.deltaTime * (Vector3)movement);
     }
 
     private void HandleAttack()
