@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
         
         if (other.TryGetComponent<Enemy>(out var enemy))
         {
+            CameraController.Instance.ShakeCamera(.5f);
             enemy.Hit();
         }
     }
