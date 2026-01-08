@@ -104,6 +104,7 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
 
+        EnemySpawner.Instance.RemoveEnemy(this.gameObject);
         Destroy(gameObject);
     }
 }

@@ -3,40 +3,45 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance;
+
     [Header("Spawn Settings")]
     public List<GameObject> enemyToSpawn;
     public float spawnInterval = 5f;
     public Vector2 enemyToSpawnRange = new (5, 10);
-    private float spawnTimer;
-    private GameObject player;
+    public int maxEnemies = 50;
+    private float m_spawnTimer;
+    private readonly List<GameObject> m_spawnedEnemies = new List<GameObject>();
 
-    private void Start()
+    private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        if (Instance == null) {
+            Instance = this;
+        } else {
+            Destroy(this.gameObject);
+        }
     }
 
     void Update()
     {
-        spawnTimer += Time.deltaTime;
-        if (spawnTimer >= spawnInterval)
+        m_spawnTimer += Time.deltaTime;
+        if (m_spawnTimer >= spawnInterval && m_spawnedEnemies.Count < maxEnemies)
         {
             SpawnEnemies();
-            spawnTimer = 0f;
+            m_spawnTimer = 0f;
         }
     }
 
     private void SpawnEnemies()
     {
         int enemiesCount = Random.Range((int)enemyToSpawnRange.x, (int)enemyToSpawnRange.y + 1);
-        Vector3 cameraBounds = CameraController.Instance.GetCameraBounds();
 
         for (int i = 0; i < enemiesCount; i++)
         {
             int enemyIndex = Random.Range(0, enemyToSpawn.Count);
-            int randomX = Random.Range(0, 11);
-            int randomY = Random.Range(0, 11);
             Vector3 spawnPosition = GetPositionOutsideCameraBounds();
-            Instantiate(enemyToSpawn[enemyIndex], spawnPosition, Quaternion.identity);
+            GameObject spawnedEnemy = Instantiate(enemyToSpawn[enemyIndex], spawnPosition, Quaternion.identity);
+            m_spawnedEnemies.Add(spawnedEnemy);
         }
     }
 
@@ -63,5 +68,13 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
         return spawnPosition;
+    }
+
+    public void RemoveEnemy(GameObject enemy)
+    {
+        if (m_spawnedEnemies.Contains(enemy))
+        {
+            m_spawnedEnemies.Remove(enemy);
+        }
     }
 }
