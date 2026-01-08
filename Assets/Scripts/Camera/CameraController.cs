@@ -39,6 +39,18 @@ public class CameraController : MonoBehaviour
         m_zoomCoroutine = StartCoroutine(ZoomCoroutine(value));
     }
 
+    public Vector3 GetCameraBounds()
+    {
+        float height = 2f * m_camera.Lens.OrthographicSize;
+        float width = height * m_camera.Lens.Aspect;
+        return new Vector3(width, height, 0f);
+    }
+
+    public Vector3 GetCameraCenter()
+    {
+        return m_camera.transform.position;
+    }
+
     private IEnumerator ZoomCoroutine(float value)
     {
         float startSize = m_camera.Lens.OrthographicSize;
