@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2906884291945553028}
+  - component: {fileID: 4117204815257721756}
   - component: {fileID: 5471229215984331238}
   - component: {fileID: 7596588939393507930}
-  - component: {fileID: 3185512119145348502}
+  - component: {fileID: 8786352088000943658}
   m_Layer: 0
   m_Name: SlimeContainer
   m_TagString: Enemy
@@ -35,6 +36,19 @@ Transform:
   - {fileID: 443397104758942834}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4117204815257721756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8569209354631081440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac8b3206c3c896a4d8f16de3f5591bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8892550228847287991}
 --- !u!50 &5471229215984331238
 Rigidbody2D:
   serializedVersion: 5
@@ -96,7 +110,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.10584366, y: -0.19992712}
+  m_Offset: {x: 0.10584366, y: -0.38563502}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -106,9 +120,9 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2116873, y: 0.9529583}
+  m_Size: {x: 1.2116873, y: 0.5815425}
   m_EdgeRadius: 0
---- !u!114 &3185512119145348502
+--- !u!114 &8786352088000943658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,10 +131,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8569209354631081440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61a5967d17d8e99409968fe841597f6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 78055f627cb02434c93b2d55fa084de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 0b5e0eecec476784f8a7ac68e11af523, type: 2}
+  m_knockbackPower: 50
+  m_animationManager: {fileID: 4117204815257721756}
 --- !u!1001 &7742469025353929599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,6 +149,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 1160356261127867848, guid: b235f0ee3a2a72b4e95a6ac0f82456e9, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9f488143bd4e16a42bc4869ce753a9e9, type: 2}
     - target: {fileID: 7878350319992209165, guid: b235f0ee3a2a72b4e95a6ac0f82456e9, type: 3}
       propertyPath: m_LocalScale.x
       value: 10
@@ -197,5 +217,10 @@ PrefabInstance:
 --- !u!4 &443397104758942834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: b235f0ee3a2a72b4e95a6ac0f82456e9, type: 3}
+  m_PrefabInstance: {fileID: 7742469025353929599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8892550228847287991 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1160356261127867848, guid: b235f0ee3a2a72b4e95a6ac0f82456e9, type: 3}
   m_PrefabInstance: {fileID: 7742469025353929599}
   m_PrefabAsset: {fileID: 0}
