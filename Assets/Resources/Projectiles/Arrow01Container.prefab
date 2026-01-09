@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5059286571930412937}
   - component: {fileID: 7405616154419173553}
   - component: {fileID: -6665819636481187417}
+  - component: {fileID: 1353181922157467618}
   m_Layer: 0
   m_Name: Arrow01Container
   m_TagString: Enemy
@@ -107,6 +108,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1353181922157467618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2150690310969110723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff13063e25e7cf47878874ea2f80977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &2528818071498956843
 GameObject:
   m_ObjectHideFlags: 0
