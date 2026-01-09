@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonSO
   m_EditorClassIdentifier: 
   enemyName: Skeleton
-  maxHealth: 80
+  maxHealth: 40
   moveSpeed: 5
   damage: 25
   experienceValue: 5

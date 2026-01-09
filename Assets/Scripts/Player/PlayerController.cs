@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
         }
 
         animationManager.TriggerAttack();
-        m_autoAttackCountdown = 2.5f;
+        m_autoAttackCountdown = 1f;
     }
 
     private void OnMovePerformed(InputAction.CallbackContext context)
