@@ -5,7 +5,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider2D))]
 public class PlayerAttack : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (!other.CompareTag("Enemy"))
             return;

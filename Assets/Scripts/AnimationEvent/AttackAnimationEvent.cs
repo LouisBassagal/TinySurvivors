@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SwordmanAnimationEventManager : MonoBehaviour
+public class AttackAnimationEvent : MonoBehaviour
 {
     [Header("Attack Collider")]
     public GameObject attackCollider;

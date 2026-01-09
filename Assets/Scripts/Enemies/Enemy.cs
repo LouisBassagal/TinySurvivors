@@ -9,18 +9,18 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Settings")]
     public EnemySO enemyData;
     [SerializeField]
-    private float m_knockbackPower = 50f;
+    protected float m_knockbackPower = 50f;
     [SerializeField]
-    private AnimationManager m_animationManager;
+    protected AnimationManager m_animationManager;
 
-    private float currentHealth;
-    private Transform m_playerTransform;
-    private bool m_isDead = false;
-    private float m_invincibilityTimer = 0.5f;
-    private Collider2D m_collider;
-    private Rigidbody2D m_rigidbody;
+    protected float currentHealth;
+    protected Transform m_playerTransform;
+    protected bool m_isDead = false;
+    protected float m_invincibilityTimer = 0.5f;
+    protected Collider2D m_collider;
+    protected Rigidbody2D m_rigidbody;
 
-    void Start()
+    protected virtual void Start()
     {
         currentHealth = enemyData.maxHealth;
         m_playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (m_isDead)
             return;
