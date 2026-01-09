@@ -105,6 +105,6 @@ public class Enemy : MonoBehaviour
         }
 
         EnemySpawner.Instance.RemoveEnemy(this.gameObject);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 }

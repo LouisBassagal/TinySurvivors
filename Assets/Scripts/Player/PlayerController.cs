@@ -77,4 +77,12 @@ public class PlayerController : MonoBehaviour
     {
         m_isMoving = false;
     }
+
+    public void Hit(Transform enemyTransform, float damage)
+    {
+        Vector2 knockbackDirection = (m_player.transform.position - enemyTransform.position).normalized;
+        m_player.GetComponent<Rigidbody2D>().AddForce(knockbackDirection * 100f, ForceMode2D.Impulse);
+        animationManager.TriggerHurt();
+        Debug.Log("Player Hit!");
+    }
 }
