@@ -67,7 +67,12 @@ public class Enemy : MonoBehaviour
         var xpToDrop = enemyData.experienceValue / 5;
 
         for (int i = 0; i < xpToDrop; i++)
-            Instantiate(m_XPPrefab, transform.position, Quaternion.identity);
+        {
+            var RandomOffset = new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0);
+            var xpInstance = Instantiate(m_XPPrefab, transform.position, Quaternion.identity);
+            XPBehavior xpBehavior = xpInstance.GetComponent<XPBehavior>();
+            xpBehavior.StartAnimationToPosition(transform.position + RandomOffset);         
+        }
 
         m_animationManager.TriggerDeath();
         m_collider.enabled = false;

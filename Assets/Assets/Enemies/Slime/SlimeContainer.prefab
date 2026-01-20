@@ -137,6 +137,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 0b5e0eecec476784f8a7ac68e11af523, type: 2}
   m_knockbackPower: 50
   m_animationManager: {fileID: 4117204815257721756}
+  m_XPPrefab: {fileID: 2180531975359224299, guid: 3df693715678bf047b70533a2d882897, type: 3}
 --- !u!1001 &7742469025353929599
 PrefabInstance:
   m_ObjectHideFlags: 0
