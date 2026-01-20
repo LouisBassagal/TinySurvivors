@@ -124,6 +124,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 37e871996f9f17b4ea982395a8b89a91, type: 2}
   m_knockbackPower: 50
   m_animationManager: {fileID: 3936617557857992660}
+  m_XPPrefab: {fileID: 2180531975359224299, guid: 3df693715678bf047b70533a2d882897, type: 3}
 --- !u!114 &3936617557857992660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +154,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 70564a7ac32c5b740abbe77030f173b7, type: 2}
+    - target: {fileID: 3626916397498700004, guid: 8ce2e746edfec09468a0b820a8d1de19, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 8ce2e746edfec09468a0b820a8d1de19, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1255823743
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 8ce2e746edfec09468a0b820a8d1de19, type: 3}
       propertyPath: m_LocalScale.x
       value: 10

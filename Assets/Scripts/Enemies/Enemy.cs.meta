@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 61a5967d17d8e99409968fe841597f6f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - enemyData: {instanceID: 0}
+  - m_animationManager: {instanceID: 0}
+  - m_XPPrefab: {fileID: 2180531975359224299, guid: 3df693715678bf047b70533a2d882897, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

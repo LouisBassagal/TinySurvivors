@@ -153,6 +153,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 9f488143bd4e16a42bc4869ce753a9e9, type: 2}
+    - target: {fileID: 3626916397498700004, guid: b235f0ee3a2a72b4e95a6ac0f82456e9, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: b235f0ee3a2a72b4e95a6ac0f82456e9, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1255823743
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: b235f0ee3a2a72b4e95a6ac0f82456e9, type: 3}
       propertyPath: m_LocalScale.x
       value: 10

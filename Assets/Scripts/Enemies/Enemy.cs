@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Xml.XPath;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,8 @@ public class Enemy : MonoBehaviour
     protected float m_knockbackPower = 50f;
     [SerializeField]
     protected AnimationManager m_animationManager;
+    [SerializeField]
+    protected GameObject m_XPPrefab;
 
     protected float currentHealth;
     protected Transform m_playerTransform;
@@ -61,7 +64,11 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Die()
     {
-        // Add death logic here (e.g., play animation, drop loot, etc.)
+        var xpToDrop = enemyData.experienceValue / 5;
+
+        for (int i = 0; i < xpToDrop; i++)
+            Instantiate(m_XPPrefab, transform.position, Quaternion.identity);
+
         m_animationManager.TriggerDeath();
         m_collider.enabled = false;
         m_isDead = true;
