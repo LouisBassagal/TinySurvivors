@@ -1,5 +1,4 @@
 using DG.Tweening;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class XPBehavior : MonoBehaviour
@@ -24,6 +23,21 @@ public class XPBehavior : MonoBehaviour
         transform.DOJump(targetPosition, 1, 3, m_spawnAnimationDuration)
             .SetEase(Ease.OutQuad)
             .OnComplete(() => StartIdleAnimation());
+    }
+
+    public void StartFollowPlayerAnimation(Transform playerTransform) {
+        StopAnimation();
+        DOVirtual.Float(0, 1, 5, value => 
+            { 
+                Vector3 targetPosition = Vector3.Lerp(transform.position, playerTransform.position, value);
+                transform.position = targetPosition; 
+            }
+        ).SetEase(Ease.InOutBack).OnComplete(() =>
+        {
+            StopAnimation();
+            Destroy(gameObject);
+            PlayerStats.Instance.AddXP(1);
+        });
     }
 
     private void StartIdleAnimation()
