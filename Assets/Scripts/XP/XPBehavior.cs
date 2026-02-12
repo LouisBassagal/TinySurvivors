@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -27,17 +28,7 @@ public class XPBehavior : MonoBehaviour
 
     public void StartFollowPlayerAnimation(Transform playerTransform) {
         StopAnimation();
-        DOVirtual.Float(0, 1, 5, value => 
-            { 
-                Vector3 targetPosition = Vector3.Lerp(transform.position, playerTransform.position, value);
-                transform.position = targetPosition; 
-            }
-        ).SetEase(Ease.InOutBack).OnComplete(() =>
-        {
-            StopAnimation();
-            Destroy(gameObject);
-            PlayerStats.Instance.AddXP(1);
-        });
+        StartCoroutine(FollowPlayerCoroutine(playerTransform));
     }
 
     private void StartIdleAnimation()
@@ -51,5 +42,25 @@ public class XPBehavior : MonoBehaviour
     private void StopAnimation()
     {
         transform.DOKill();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Player"))
+            return;
+
+        StopAnimation();
+        StopAllCoroutines();
+        PlayerStats.Instance.AddXP(10);
+        Destroy(gameObject);
+    }
+
+    private IEnumerator FollowPlayerCoroutine(Transform playerTransform)
+    {
+        while (true)
+        {
+            transform.position = Vector3.Lerp(transform.position, playerTransform.position, Time.deltaTime * 5f);
+            yield return null;
+        }
     }
 }

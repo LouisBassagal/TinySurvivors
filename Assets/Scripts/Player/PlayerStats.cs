@@ -13,9 +13,9 @@ public class PlayerStats : MonoBehaviour
     public float CurrentHealth { get; private set; }
     public float CurrentMoveSpeed { get; private set; }
     public float CurrentLuck { get; private set; }
-    public int CurrentLevel { get; private set; } = 1;
+    public int CurrentLevel { get; private set; } = 0;
     public int CurrentXP { get; private set; } = 0;
-    public int XPToNextLevel { get; private set; } = 100;
+    public int XPToNextLevel { get; private set; } = 0;
 
     public void AddDamage(float amount) => CurrentDamage += amount;
     public void MultiplyDamage(float factor) => CurrentDamage *= factor;
@@ -34,10 +34,12 @@ public class PlayerStats : MonoBehaviour
             return;
         }
         ResetStats();
+        XPToNextLevel = CalculateXPToNextLevel(CurrentLevel);
     }
 
     private void Update()
     {
+        Debug.LogFormat("Level: {0}, XP: {1}/{2}", CurrentLevel, CurrentXP, XPToNextLevel);
         if (CurrentXP < XPToNextLevel)
             return;
         LevelUp();
@@ -48,12 +50,13 @@ public class PlayerStats : MonoBehaviour
         CurrentLevel += 1;
         CurrentXP -= XPToNextLevel;
         XPToNextLevel = CalculateXPToNextLevel(CurrentLevel);
+        Debug.Log("Leveled up to level " + CurrentLevel);
         OnLevelUp?.Invoke();
     }
 
     private int CalculateXPToNextLevel(int x)
     {
-        return (int)Math.Truncate(0.25 * x + 10);
+        return (int)Math.Truncate(3 * Math.Pow(x, 2) + 10);
     }
 
     public void ResetStats()
