@@ -1,0 +1,23 @@
+.card {
+    flex-grow: 0;
+    transition-duration: 0.25s;
+    transition-delay: 0s;
+}
+
+.card:hover {
+    scale: 1.1 1.1;
+}
+
+.container {
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+    scale: 1 1;
+}
+
+.container:disabled {
+    scale: 0 0;
+}
+
+.container:enabled {
+    scale: 1 1;
+}

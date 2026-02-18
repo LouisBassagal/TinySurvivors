@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayableCharacterSO", menuName = "TinySurvivors/PlayableCharacterSO")]
+[CreateAssetMenu(fileName = "New Character", menuName = "TinySurvivors/New Character")]
 public class PlayableCharacterSO : ScriptableObject
 {
     public string characterName;
