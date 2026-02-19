@@ -19,7 +19,5 @@ public abstract class AbilityBase : MonoBehaviour
             OnLevelUp();
         }
     }
-
-    protected abstract void Tick();
     protected abstract void OnLevelUp();
 }

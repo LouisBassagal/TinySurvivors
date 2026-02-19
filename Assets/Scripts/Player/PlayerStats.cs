@@ -17,7 +17,7 @@ public class PlayerStats : MonoBehaviour
     public int CurrentLevel { get; private set; } = 0;
     public int CurrentXP { get; private set; } = 0;
     public int XPToNextLevel { get; private set; } = 0;
-    public Dictionary<string, int> AbilityLevels { get; private set; } = new Dictionary<string, int>();
+    public Dictionary<string, AbilityBase> AbilityLevels { get; private set; } = new Dictionary<string, AbilityBase>();
 
     public void AddDamage(float amount) => CurrentDamage += amount;
     public void MultiplyDamage(float factor) => CurrentDamage *= factor;
@@ -41,7 +41,6 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        Debug.LogFormat("Level: {0}, XP: {1}/{2}", CurrentLevel, CurrentXP, XPToNextLevel);
         if (CurrentXP < XPToNextLevel)
             return;
         LevelUp();
@@ -75,13 +74,27 @@ public class PlayerStats : MonoBehaviour
         OnXPAdded?.Invoke();
     }
 
-    public void SetAbilityLevel(string abilityName, int level)
+    public void SetAbility(AbilitySO ability)
     {
-        AbilityLevels[abilityName] = level;
+        if (AbilityLevels.TryGetValue(ability.name, out AbilityBase abilityBase))
+        {
+            abilityBase.LevelUp();
+            return;
+        }
+        CreateNewAbility(ability);
+    }
+
+    private void CreateNewAbility(AbilitySO ability)
+    {
+        var abilityContainer = transform.Find("Abilities");
+        GameObject newAbilityGO = Instantiate(ability.Prefab, transform.position, Quaternion.identity, abilityContainer);
+        var abilityComponent = newAbilityGO.AddComponent<AbilityBase>();
+
+        AbilityLevels[ability.name] = abilityComponent;
     }
 
     public int GetAbilityLevel(string abilityName)
     {
-        return AbilityLevels.TryGetValue(abilityName, out int level) ? level : 0;
+        return AbilityLevels.TryGetValue(abilityName, out AbilityBase abilityBase) ? abilityBase.Level : 0;
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,6 +17,7 @@ public class InGameUIManager : MonoBehaviour
     private VisualElement m_rightCard;
     [SerializeField]
     private List<AbilitySO> m_allAbilities = new();
+    private readonly Dictionary<Button, EventCallback<ClickEvent>> m_cardAbilityMap = new();
 
     public void UpdateXPBar() => SetXPBarFill(PlayerStats.Instance.CurrentXP);
     
@@ -33,9 +35,9 @@ public class InGameUIManager : MonoBehaviour
         InGameUIDocument = GetComponent<UIDocument>();
         m_XPBar = InGameUIDocument.rootVisualElement.Q<VisualElement>("Foreground");
         m_LevelUpPopup = InGameUIDocument.rootVisualElement.Q<VisualElement>("LevelUpPopup");
-        m_leftCard = m_LevelUpPopup.Q<VisualElement>("LeftCard");
-        m_middleCard = m_LevelUpPopup.Q<VisualElement>("MiddleCard");
-        m_rightCard = m_LevelUpPopup.Q<VisualElement>("RightCard");
+        m_leftCard = m_LevelUpPopup.Q<Button>("LeftCard");
+        m_middleCard = m_LevelUpPopup.Q<Button>("MiddleCard");
+        m_rightCard = m_LevelUpPopup.Q<Button>("RightCard");
         SetXPBarFill(0);
 
         PlayerStats.Instance.OnXPAdded += UpdateXPBar;
@@ -54,22 +56,43 @@ public class InGameUIManager : MonoBehaviour
         Time.timeScale = 0f;
         m_LevelUpPopup.SetEnabled(true);
 
-        foreach (var card in new[] { m_leftCard, m_middleCard, m_rightCard })
+        foreach (Button card in new[] { m_leftCard, m_middleCard, m_rightCard })
         {
             var title = card.Q<Label>("TitleCard");
             var description = card.Q<Label>("DescriptionCard");
             var ability = m_allAbilities[Random.Range(0, m_allAbilities.Count)];
             var abilityLevel = PlayerStats.Instance.GetAbilityLevel(ability.name);
 
+            EventCallback<ClickEvent> callback = evt => OnUpgradeSelected(ability);
+            m_cardAbilityMap[card] = callback;
+            card.RegisterCallbackOnce(callback);
+
             title.text = ability.Title + " Lv" + abilityLevel;
             description.text = ability.Description;
         }
     }
 
-    public void OnUpgradeSelected()
+    private void OnUpgradeSelected(AbilitySO ability)
     {
         Time.timeScale = 1f;
-        
         m_LevelUpPopup.SetEnabled(false);
+
+        ClearCallbacks();
+        var abilityLevel = PlayerStats.Instance.GetAbilityLevel(ability.name);
+        PlayerStats.Instance.SetAbility(ability);
+        Debug.Log("Selected upgrade: " + ability.Title);
+    }
+
+    /// <summary>
+    /// Unregisters all callbacks from the upgrade cards and clears the mapping dictionary.
+    /// </summary>
+    private void ClearCallbacks()
+    {
+        foreach (Button card in new[] { m_leftCard, m_middleCard, m_rightCard }.Cast<Button>())
+        {
+            if (m_cardAbilityMap.TryGetValue(card, out var callback))
+                card.UnregisterCallback(callback);
+        }
+        m_cardAbilityMap.Clear();
     }
 }

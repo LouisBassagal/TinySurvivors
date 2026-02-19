@@ -16,3 +16,4 @@ MonoBehaviour:
   Description: ' Create a fireball around the player. If you''ve already this, you
     can have another fireball'
   MaxLevel: 5
+  Prefab: {fileID: 4216948233582059871, guid: 5c9860d0238553c4786cd6127b5d489d, type: 3}

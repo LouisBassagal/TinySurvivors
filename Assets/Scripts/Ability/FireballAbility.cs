@@ -1,27 +1,31 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 class FireballAbility : AbilityBase
 {
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public int Level { get; set; }
-    public int MaxLevel { get; set; }
+    [SerializeField]
+    private GameObject m_fireballPrefab;
+    private List<GameObject> m_fireballs = new();
 
-    public void OnEnable()
+    private void Update()
     {
-        Title = "Fireball";
-        Description = "Launches a fireball that explodes on impact, dealing area damage.";
-        Level = 1;
-        MaxLevel = 5;
+        ManageFireballRotation();
     }
 
-    protected override void Tick()
+    protected sealed override void OnLevelUp()
     {
-        throw new System.NotImplementedException();
+        GameObject newFireball = Instantiate(m_fireballPrefab, transform.position, Quaternion.identity, this.transform);
+        m_fireballs.Add(newFireball);
     }
 
-    protected override void OnLevelUp()
+    private void ManageFireballRotation()
     {
-        throw new System.NotImplementedException();
+        foreach (var fireball in m_fireballs)
+        {
+            if (fireball != null)
+            {
+                fireball.transform.Rotate(Vector3.up, 360 * Time.deltaTime);
+            }
+        }
     }
 }
