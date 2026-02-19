@@ -22,7 +22,7 @@ class FireballAbility : AbilityBase
         m_fireballs.Add(newFireball);
         PlaceFireballs();
 
-        transform.DORotate(new Vector3(0, 0, 360), 2f, RotateMode.LocalAxisAdd).SetLoops(-1).SetEase(Ease.Linear);
+        transform.DORotate(new Vector3(0, 0, 360), 5f, RotateMode.LocalAxisAdd).SetLoops(-1).SetEase(Ease.Linear);
     }
 
     private void PlaceFireballs()
