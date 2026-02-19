@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 class FireballAbility : AbilityBase
@@ -6,25 +7,37 @@ class FireballAbility : AbilityBase
     [SerializeField]
     private GameObject m_fireballPrefab;
     private List<GameObject> m_fireballs = new();
+    private readonly float m_radius = 0.5f;
 
-    private void Update()
+    private void OnEnable()
     {
-        ManageFireballRotation();
+        OnLevelUp();
     }
 
     protected sealed override void OnLevelUp()
     {
+        DOTween.Kill(transform);
+
         GameObject newFireball = Instantiate(m_fireballPrefab, transform.position, Quaternion.identity, this.transform);
         m_fireballs.Add(newFireball);
+        PlaceFireballs();
+
+        transform.DORotate(new Vector3(0, 0, 360), 2f, RotateMode.LocalAxisAdd).SetLoops(-1).SetEase(Ease.Linear);
     }
 
-    private void ManageFireballRotation()
+    private void PlaceFireballs()
     {
-        foreach (var fireball in m_fireballs)
+        int count = m_fireballs.Count;
+        for (int i = 0; i < count; i++)
         {
-            if (fireball != null)
+            if (m_fireballs[i] != null)
             {
-                fireball.transform.Rotate(Vector3.up, 360 * Time.deltaTime);
+                float angle = i * Mathf.PI * 2 / count;
+                Vector3 newPos = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * m_radius;
+                m_fireballs[i].transform.localPosition = newPos;
+
+                float facingAngle = angle * Mathf.Rad2Deg * 180f;
+                m_fireballs[i].transform.localRotation = Quaternion.Euler(0, 0, facingAngle);
             }
         }
     }

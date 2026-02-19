@@ -88,8 +88,9 @@ public class PlayerStats : MonoBehaviour
     {
         var abilityContainer = transform.Find("Abilities");
         GameObject newAbilityGO = Instantiate(ability.Prefab, transform.position, Quaternion.identity, abilityContainer);
-        var abilityComponent = newAbilityGO.AddComponent<AbilityBase>();
+        var abilityComponent = newAbilityGO.GetComponent<AbilityBase>();
 
+        abilityComponent.Initialize(ability);
         AbilityLevels[ability.name] = abilityComponent;
     }
 

@@ -64,12 +64,14 @@ public class PlayerController : MonoBehaviour
     private void OnMovePerformed(InputAction.CallbackContext context)
     {
         Vector2 movement = context.ReadValue<Vector2>();
+        Transform abilityTransform = m_player.transform.Find("Abilities");
 
         if (movement.x < 0)
             m_player.transform.localScale = new Vector3(-1, 1, 1);
         else if (movement.x > 0)
             m_player.transform.localScale = new Vector3(1, 1, 1);
 
+        abilityTransform.localScale = m_player.transform.localScale;
         m_isMoving = true;
     }
 

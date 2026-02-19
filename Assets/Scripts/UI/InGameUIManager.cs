@@ -78,7 +78,6 @@ public class InGameUIManager : MonoBehaviour
         m_LevelUpPopup.SetEnabled(false);
 
         ClearCallbacks();
-        var abilityLevel = PlayerStats.Instance.GetAbilityLevel(ability.name);
         PlayerStats.Instance.SetAbility(ability);
         Debug.Log("Selected upgrade: " + ability.Title);
     }
