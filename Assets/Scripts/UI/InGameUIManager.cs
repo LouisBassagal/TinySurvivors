@@ -59,7 +59,9 @@ public class InGameUIManager : MonoBehaviour
             var title = card.Q<Label>("TitleCard");
             var description = card.Q<Label>("DescriptionCard");
             var ability = m_allAbilities[Random.Range(0, m_allAbilities.Count)];
-            title.text = ability.Title;
+            var abilityLevel = PlayerStats.Instance.GetAbilityLevel(ability.name);
+
+            title.text = ability.Title + " Lv" + abilityLevel;
             description.text = ability.Description;
         }
     }
@@ -67,6 +69,7 @@ public class InGameUIManager : MonoBehaviour
     public void OnUpgradeSelected()
     {
         Time.timeScale = 1f;
+        
         m_LevelUpPopup.SetEnabled(false);
     }
 }

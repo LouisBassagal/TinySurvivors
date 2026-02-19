@@ -384,6 +384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_allAbilities:
   - {fileID: 11400000, guid: 964538f8937afcd48b6e73289fe5199c, type: 2}
+  - {fileID: 11400000, guid: d2b938568dc353d42adc18fb0bb53211, type: 2}
 --- !u!1 &502773937
 GameObject:
   m_ObjectHideFlags: 0

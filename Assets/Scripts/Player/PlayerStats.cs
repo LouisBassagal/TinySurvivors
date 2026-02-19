@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     public int CurrentLevel { get; private set; } = 0;
     public int CurrentXP { get; private set; } = 0;
     public int XPToNextLevel { get; private set; } = 0;
+    public Dictionary<string, int> AbilityLevels { get; private set; } = new Dictionary<string, int>();
 
     public void AddDamage(float amount) => CurrentDamage += amount;
     public void MultiplyDamage(float factor) => CurrentDamage *= factor;
@@ -71,5 +73,15 @@ public class PlayerStats : MonoBehaviour
     {
         CurrentXP += amount;
         OnXPAdded?.Invoke();
+    }
+
+    public void SetAbilityLevel(string abilityName, int level)
+    {
+        AbilityLevels[abilityName] = level;
+    }
+
+    public int GetAbilityLevel(string abilityName)
+    {
+        return AbilityLevels.TryGetValue(abilityName, out int level) ? level : 0;
     }
 }
