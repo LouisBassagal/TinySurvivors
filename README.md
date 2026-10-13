@@ -1,10 +1,12 @@
 # Tiny Survivors
 
-A **Vampire Survivors-like** game set in a rich fantasy universe.
+A **Vampire Survivors-like** game set in a fantasy universe.
 
 ## 🎮 About
 
 Tiny Survivors is a bullet heaven roguelite where you battle endless waves of fantasy creatures. Survive as long as you can, collect power-ups, and evolve your character into an unstoppable force.
+
+![Preview 1](misc/preview-1.gif)
 
 ## ✨ Features
 
